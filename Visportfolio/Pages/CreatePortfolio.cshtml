@@ -1,0 +1,58 @@
+﻿@page
+@model Visportfolio.Pages.CreatePortfolioModel
+@{
+    ViewData["Title"] = "CreatePortfolio";
+}
+
+<h1>CreatePortfolio</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.category[0].CategoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.category[0].CategoryName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.category)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+            </tr>
+         }
+
+    </tbody>
+</table>
+
+
+<div class="my_dropdown">
+    <button class="my_dropbtn">
+        Categories
+        <i class="fa fa-caret-down"></i>
+    </button>
+
+    <div class="my_dropdown-content">
+        
+            @foreach (var item in Model.category)
+            {
+                <ul>
+                    <li>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </li>
+                </ul>
+            }
+
+    </div>
+</div>
+    
