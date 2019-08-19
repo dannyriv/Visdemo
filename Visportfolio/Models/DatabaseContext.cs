@@ -51,7 +51,7 @@ namespace Visportfolio.Models
         {
             List<SubCategory> lstsubcategory = new List<SubCategory>();
 
-            using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlConnection con = new SqlConnection(connectionString))//
             {
                 using (SqlCommand cmd = new SqlCommand("sp_SelectSubCategories", con))
                 {
