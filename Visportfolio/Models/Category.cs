@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Visportfolio.Models
 {
     [Table("Category")]
-    public class CategoryTB
+    public class Category
     {
         [Key]
         public int CategoryId { get; set; }

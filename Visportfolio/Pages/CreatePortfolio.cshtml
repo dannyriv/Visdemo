@@ -6,53 +6,27 @@
 
 <h1>CreatePortfolio</h1>
 
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.category[0].CategoryId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.category[0].CategoryName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.category)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoryId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoryName)
-                </td>
-            </tr>
-         }
-
-    </tbody>
-</table>
+<h4>Categories</h4>
+<select asp-for="CategoryId" asp-items="Model.categorylist">
+    <option value="">Select Category</option>
+</select>
+<h4>SubCategories</h4>
+<select asp-for="SubCategoryId"></select>
+@section scripts{
+    <script>
+        $(function () {
+            $("#CategoryId").on("change", function () {
+                var categoryId = $(this).val();
+                $("#SubCategoryId").empty();
+                $("#SubCategoryId").append("<option value=''>Select Subcategory</option>");
+                $.getJSON(`?handler=SubCategories&categoryId=${categoryId}`, (data) => {
+                    $.each(data, function (i, item) {
+                        $("#SubCategoryId").append(`<option value="${item.subCategoryId}">${item.subCategoryName}</option>`);
+                    });
+                });
+            });
+        });
+    </script>
+}
 
 
-<div class="my_dropdown">
-    <button class="my_dropbtn">
-        Categories:::
-        <i class="fa fa-caret-down"></i>
-    </button>
-
-    <div class="my_dropdown-content">
-        
-            @foreach (var item in Model.category)
-            {
-                <ul>
-                    <li>
-                        @Html.DisplayFor(modelItem => item.CategoryName)
-                    </li>
-                </ul>
-            }
-
-    </div>
-</div>
-    

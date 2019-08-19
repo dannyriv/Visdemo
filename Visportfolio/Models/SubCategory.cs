@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,10 +13,10 @@ namespace Visportfolio.Models
     public class SubCategory
     {
         [Key]
-        public int SubCategoryId {get; set;}
+        public int SubCategoryId { get; set;}
         public string SubCategoryName { get; set; }
         public string ProjectName { get; set; }
-        public string Description { get; set; }
-
+        public string SubCategoryDescription { get; set; }
+        public int CategoryId { get; set; }
     }
 }

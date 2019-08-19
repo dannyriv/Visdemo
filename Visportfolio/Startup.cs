@@ -33,11 +33,12 @@ namespace Visportfolio
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             var connection = Configuration.GetConnectionString("DatabaseConnection");
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connection));
+
+            services.AddTransient<ICategoryService, CategoryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
