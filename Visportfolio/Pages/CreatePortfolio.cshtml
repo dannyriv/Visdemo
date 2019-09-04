@@ -6,27 +6,103 @@
 
 <h1>CreatePortfolio</h1>
 
-<h4>Categories</h4>
-<select asp-for="CategoryId" asp-items="Model.categorylist">
-    <option value="">Select Category</option>
-</select>
-<h4>SubCategories</h4>
-<select asp-for="SubCategoryId"></select>
-@section scripts{
-    <script>
-        $(function () {
-            $("#CategoryId").on("change", function () {
-                var categoryId = $(this).val();
-                $("#SubCategoryId").empty();
-                $("#SubCategoryId").append("<option value=''>Select Subcategory</option>");
-                $.getJSON(`?handler=SubCategories&categoryId=${categoryId}`, (data) => {
-                    $.each(data, function (i, item) {
-                        $("#SubCategoryId").append(`<option value="${item.subCategoryId}">${item.subCategoryName}</option>`);
+
+    <span class="control-group form-group">
+        <span class="controls">
+            <label>Category:</label>
+            <select asp-for="CategoryId" asp-items="Model.categorylist">
+                <option value="">---Select Category---</option>
+            </select>
+            <button type="button" onclick="alert('Testing')">Add</button>
+        </span>
+    </span>
+
+    <span class="control-group form-group">
+        <span class="controls">
+            <label>Subcategory:</label>
+            <select asp-for="SubCategoryId"></select>
+            @section scripts{
+                <script>
+                    $(function () {
+                        $("#CategoryId").on("change", function () {
+                            var categoryId = $(this).val();
+                            $("#SubCategoryId").empty();
+                            $("#SubCategoryId").append("<option value=''>---Select Subcategory---</option>");
+                            $.getJSON(`?handler=SubCategories&categoryId=${categoryId}`, (data) => {
+                                $.each(data, function (i, item) {
+                                    $("#SubCategoryId").append(`<option value="${item.subCategoryId}">${item.subCategoryName}</option>`);
+                                });
+                            });
+                        });
                     });
-                });
-            });
-        });
-    </script>
-}
+                </script>
+            }
+        </span>
+    </span>
+
+    <div>
+        <span class="control-group">
+            <span class="controls">
+                <button id="InsertSubCategory" value="val_1" name="but1">New Subcategory</button>
+                <input id="access_token" type="hidden" name="access_token" value="<?php echo $_SESSION['access_token']; ?>" />
+                @section scripts{
+                                <sciprt>
+                                    ––> Here I was last attempting to implement ajax call to display form upon button click <!––
+                                </sciprt>
+                }
+            </span>
+        </span>
+        <div class="container">
+            <form method="post">
+                <span class="row">
+                    <span class="col-md-4">
+                        <label asp-for="SubCategory.SubCategoryName">Subcategory Name:</label>
+                        <input asp-for="SubCategory.SubCategoryName" class="form-control" />
+                    </span>
+                </span>
+                <br />
+                <input type="submit" value="Submit" class="btn btn-primary" />
+
+            </form>
+
+        </div>
+    </div>
+        
+    <div>
+        <button type="button" id="AddProject">New Project</button>
+        <div class="container">
+            <form method="post">
+                <span class="row">
+                    <span class="col-md-4">
+                        <label asp-for="Project.ProjectName">Project Name:</label>
+                        <input asp-for="Project.ProjectName" class="form-control" />
+                    </span>
+                </span>
+                <span class="row">
+                    <span class="col-md-4">
+                        <label asp-for="Project.ProjectDescription">Description:</label>
+                        <input asp-for="Project.ProjectDescription" class="form-control"/>
+                    </span>
+                </span>
+                <span class="control-group form-group">
+                    <span class="controls">
+                        <label>File upload:</label>
+                    </span>
+                </span>
+                <br/>
+                <input type="submit" value="Submit" class="btn btn-primary"/>
+                <a class="btn btn-default" href="/allcustomer">Cancel</a>
+            </form>
+        </div>
+
+    </div>
+
+    
+
+
+
+
+   
+
 
 

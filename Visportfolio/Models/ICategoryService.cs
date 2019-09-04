@@ -9,6 +9,7 @@ namespace Visportfolio.Models
     {
         IEnumerable<Category> GetCategories();
         IEnumerable<SubCategory> GetSubCategories(int CategoryId);
+        IEnumerable<Project> GetProjects(int SubCategoryId);
     }
 
     public class CategoryService : ICategoryService
@@ -28,6 +29,11 @@ namespace Visportfolio.Models
         {
             List<SubCategory> subcategories = _context.GetAllSubCategories(CategoryId);
             return subcategories;
+        }
+        public IEnumerable<Project> GetProjects(int SubCategoryId)
+        {
+            List<Project> projects = _context.GetAllProjects(SubCategoryId);
+            return projects;
         }
     }
 }

@@ -14,9 +14,9 @@ namespace Visportfolio.Models
         {
 
         }
-        public DbSet<Category> Category { get; set; }
-        public DbSet<SubCategory> SubCategory { get; set; }
+
         public DbSet<VisUser> VisUser { get; set; }
+        public DbSet<Project> Project { get; set; }
         string connectionString = "Data Source=DESKTOP-6QK329A\\SQLEXPRESS; UID=sa; Password=Chingo123; Database=VispiresTest;";
 
         public List<Category> GetAllCategoires()
@@ -47,11 +47,12 @@ namespace Visportfolio.Models
             }
             return lstcategory;
         }
+
         public List<SubCategory> GetAllSubCategories(int CategoryId)
         {
             List<SubCategory> lstsubcategory = new List<SubCategory>();
 
-            using (SqlConnection con = new SqlConnection(connectionString))//
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("sp_SelectSubCategories", con))
                 {
@@ -72,6 +73,33 @@ namespace Visportfolio.Models
                 }
             }
             return lstsubcategory;
+        }
+
+        public List<Project> GetAllProjects(int SubCategoryId)
+        {
+            List<Project> lstproject = new List<Project>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_SelectProjects", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(("@SubCategoryId"), SqlDbType.Int).Value = SubCategoryId;
+                    con.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        Project project = new Project();
+
+                        project.ProjectId = Convert.ToInt32(rdr["ProjectId"]);
+                        project.ProjectName = rdr["ProjectName"].ToString();
+
+                        lstproject.Add(project);
+                    }
+                    con.Close();
+                }
+            }
+            return lstproject;
         }
 
     }
