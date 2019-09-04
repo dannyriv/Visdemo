@@ -17,7 +17,7 @@ namespace Visportfolio.Models
         public DbSet<Category> Category { get; set; }
         public DbSet<SubCategory> SubCategory { get; set; }
         public DbSet<VisUser> VisUser { get; set; }
-        string connectionString = "Data Source=DESKTOP-6QK329A\\SQLEXPRESS; UID=sa; Password=Chingo123; Database=VispiresTest;";
+        string connectionString = "Data Source=DANNY\\SQLEXPRESS; UID=sa; Password=Chingo123; Database=Vispires;";
 
         public List<Category> GetAllCategoires()
         {
@@ -72,7 +72,6 @@ namespace Visportfolio.Models
                 }
             }
             return lstsubcategory;
-        }
-
+        } 
     }
 }

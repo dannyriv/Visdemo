@@ -1,8 +1,33 @@
 ﻿@page
-@model Visportfolio.Pages.LoginModel
-@{
-    ViewData["Title"] = "Login";
-}
-
+@using Visportfolio.Models @*namespace*@
+@model LoginModel
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 <h1>Login</h1>
+<div class="container">
+    <h3>Login Here:  </h3>
+    <hr />
+    <br />
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="UserName"> Username: </label>
+                <input asp-for="UserName" class="form-control" />
+                <span class="alert-danger" asp-validation-for="UserName"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Password"> Username: </label>
+                <input asp-for="Password" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Password"></span>
+            </div>
+        </div>
 
+
+        <br />
+        <input type="submit" value="Login" class="btn btn-primary" />
+        <a class="btn btn-default" href="/allcustomer">Cancel</a>
+    </form>
+</div>

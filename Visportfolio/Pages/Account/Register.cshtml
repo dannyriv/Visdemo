@@ -1,8 +1,72 @@
 ﻿@page
-@model Visportfolio.Pages.RegisterModel
-@{
-    ViewData["Title"] = "Register";
-}
-
+@using Visportfolio.Models @*namespace*@
+@model RegisterModel
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 <h1>Register</h1>
 
+<div class="container">
+    <h3>Register Here:  </h3>
+    <hr />
+    <br />
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="_VisUser.FirstName"></label>
+                <input asp-for="_VisUser.FirstName" class="form-control" />
+                <span class="alert-danger" asp-validation-for="_VisUser.FirstName"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="_VisUser.MiddleInitial"></label>
+                <input asp-for="_VisUser.MiddleInitial" class="form-control" />
+                <span class="alert-danger" asp-validation-for="_VisUser.MiddleInitial"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="_VisUser.LastName"></label>
+                <input asp-for="_VisUser.LastName" class="form-control" />
+                <span class="alert-danger" asp-validation-for="_VisUser.LastName"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="_VisUser.Email"></label>
+                <input asp-for="_VisUser.Email" class="form-control" />
+                <span class="alert-danger" asp-validation-for="_VisUser.Email"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="_VisUser.UserName"></label>
+                <input asp-for="_VisUser.UserName" class="form-control" />
+                <span class="alert-danger" asp-validation-for="_VisUser.UserName"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="_VisUser.UserPassword"></label>
+                <input asp-for="_VisUser.UserPassword" class="form-control" />
+                <span class="alert-danger" asp-validation-for="_VisUser.UserPassword"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span class="alert-danger" asp-validation-for="ConfirmPassword"></span>
+            </div>
+        </div>
+
+
+        <br />
+        <input type="submit" value="Submit" class="btn btn-primary" />
+        <a class="btn btn-default" href="/allcustomer">Cancel</a>
+    </form>
+</div>  

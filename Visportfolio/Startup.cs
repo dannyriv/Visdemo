@@ -39,6 +39,8 @@ namespace Visportfolio
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connection));
 
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IAccountService, AccountService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

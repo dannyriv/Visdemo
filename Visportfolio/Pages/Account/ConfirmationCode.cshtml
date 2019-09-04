@@ -1,0 +1,25 @@
+﻿@page
+@using Visportfolio.Models @*namespace*@
+@model Visportfolio.Pages.Account.ConfirmationCodeModel
+@{
+    ViewData["Title"] = "ConfirmationCode";
+}
+
+<h1>Code Authentication</h1>
+
+<h3>Enter Code Here:</h3>
+
+<input asp-for="ConCode" type="hidden" value="ConCode" />
+
+<form method="post">
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for="ConfirmCode"></label>
+            <input asp-for="ConfirmCode" class="form-control" />
+            <span class="alert-danger" asp-validation-for="ConfirmCode"></span>
+        </div>
+    </div>
+
+    <input type="submit" value="Submit" class="btn btn-primary" />
+</form>
+

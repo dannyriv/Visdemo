@@ -10,6 +10,7 @@ namespace Visportfolio.Models
     {
         [Key]
         public int UserId { get; set; }
+        public int IsValid { get; set; }
         [Required(ErrorMessage = "Enter Name")]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Enter Middle Initial (Optional)")]
@@ -20,7 +21,9 @@ namespace Visportfolio.Models
         public string Email { get; set; }
         [Required(ErrorMessage = "Enter User Name")]
         public string UserName { get; set; }
-        [Required(ErrorMessage = "Enter User Password")]
+        [Required(ErrorMessage = "Enter User Password"), DataType(DataType.Password)]
         public string UserPassword { get; set; }
+        public string ConfirmationCode { get; set; }
+
     }
 }
